@@ -1,12 +1,34 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/styles/index.css">
+    <title>Pokemon</title>
+    
+</head>
+<body>
+    <main>
+        <h1>PokéDex</h1>
+        <a href="./src/pages/pokemons.html">Ver pokémons escolhidos </a>
+        
 
-    <title>Consumindo PokeAPI</title>
-  </head>
-
-  <body></body>
+        <h2>Escolha um Pokémon</h2>
+        <form>
+            <input id="name" placeholder="Nome do Pokémon">
+            <button id="btnCreate" type="submit">Eu escolho você!
+            </button>
+            <span class="notFound hide">Pokémon não encontrado</span>
+            <span class="add hide">Pokémon escolhido!</span>
+        </form>
+    </main>
+   
+    <script src="./src/scripts/localStorage.js"></script>
+    <script src="./src/scripts/pokemons.js"></script>
+<script src="./src/scripts/requests.js"></script>
+<script src="./src/scripts/script.js"></script>
+    
+    
+</body>
 </html>
