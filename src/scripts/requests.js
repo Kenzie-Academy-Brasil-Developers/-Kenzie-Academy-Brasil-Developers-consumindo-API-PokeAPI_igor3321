@@ -1,11 +1,18 @@
-async function getPokemon(name) {
-    try {
-        const request = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+async function consomePokeAPI() {
+    const loading = document.querySelector('#loading')
 
-        const response = await request.json()
+    const pokemonsDaAPI = await fetch('https://pokeapi.co/api/v2/pokemon', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+        .then(response => response.json())
+        .catch(error => alert(error))
 
-        return response
-    } catch(err) {
-        
-    }
+    loading.classList.add('hidden')
+
+    return pokemonsDaAPI
 }
+
+consomePokeAPI()
