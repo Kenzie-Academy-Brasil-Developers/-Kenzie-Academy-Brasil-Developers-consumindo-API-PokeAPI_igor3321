@@ -1,57 +1,68 @@
-async function renderizaPokemons() {
-    const ulTag = document.querySelector('ul')
-
-    const listaDePokemons = await consomePokeAPI()
-
-    listaDePokemons.results.forEach(pokemon => {
-        const numeroNaPokedex = pokemon.url.slice(34, -1)
-
-        ulTag.insertAdjacentHTML('beforeend', `
-            <li>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numeroNaPokedex}.png" alt=${pokemon.name}>
-                <h3>${pokemon.name}</h3>
-            </li>
-        `)
+async function render(element) {
+    const mainList = document.querySelector('.main_card')
+  
+    mainList.innerHTML = ''
+  
+    element.results.forEach(card => {
+      const cards = createCard(card)
+  
+      mainList.append(cards)
     })
-}
+  }
+   
+  function createCard(element) {
+    const container = document.createElement('li')
+    const image = document.createElement('img')
+    const h2 = document.createElement('h2')
+    
+    container.classList.add("li_card")
+    const numeroNaPokedex = element.url.slice(34, -1)
 
-renderizaPokemons()
+    image.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numeroNaPokedex}.png`
+    image.alt = element.name
+  
+    h2.innerText = element.name
 
-async function getPokemonByName(namePokemon) {
-    const ulTag = document.querySelector('ul')
+    container.append(image, h2)
+  
+    return container
+  }
 
-    const listaDePokemons = await consomePokeAPI()
+     function createCardSearch(element){
+    const container = document.createElement('li')
+    const image = document.createElement('img')
+    const h2 = document.createElement('h2')
+    
+    container.classList.add("li_card")
+    image.src = element.sprites.front_default
+    image.alt = element.name
+  
+    h2.innerText = element.name
 
-    ulTag.innerHTML = ''
+  
+    container.append(image, h2)
+  
+    return container
+  }
 
-    listaDePokemons.results.forEach(pokemon => {
-        if (namePokemon == pokemon.name) {
-            const numeroNaPokedex = pokemon.url.slice(34, -1)
+    async function renderCardSearch(element) {
+    const mainList = document.querySelector('.main_card')
+   
+    mainList.innerHTML = ''
+    const cards = createCardSearch(element)
+    mainList.append(cards)
 
-            ulTag.insertAdjacentHTML('beforeend', `
-            <li>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${numeroNaPokedex}.png" alt=${pokemon.name}>
-                <h3>${pokemon.name}</h3>
-            </li>
-        `)
-        }
-    })
-}
-
-function renderSearch() {
-    const inputSearch = document.querySelector('input')
-    const ulTag = document.querySelector('ul')
-
-    const btnSearch = document.querySelector('#searchBtn')
-    btnSearch.addEventListener('click', () => {
-        if (inputSearch.value == '') {
-            ulTag.innerHTML = ''
-
-            renderizaPokemons()
-        } else {
-            getPokemonByName(inputSearch.value)
-        }
-    })
-}
-
-renderSearch()
+  }
+   
+    function createLoaddingCard() {
+    const li = document.createElement('li')
+    const p = document.createElement('p')
+    const img = document.createElement('img')
+    
+    p.classList.add('loadingL')
+    li.classList.add('loading')
+    p.innerText = 'Loading...'
+    li.append(p, img)
+  
+    return li
+  }

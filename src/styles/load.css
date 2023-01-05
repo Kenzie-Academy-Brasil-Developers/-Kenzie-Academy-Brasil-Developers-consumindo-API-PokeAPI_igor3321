@@ -1,0 +1,26 @@
+.spinner {
+    width: 100px;
+    height: 50px;
+    animation: rotate 1s linear infinite;
+    margin-top: 1rem;
+  }
+  .loadingL {
+    width: 10px;
+    height: 26px;
+    font-family: "IBM Plex Sans";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 26px;
+    color: #adb5bd;
+    margin-top: 28vh;
+  }
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
